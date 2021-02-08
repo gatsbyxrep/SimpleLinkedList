@@ -68,10 +68,18 @@ public class LinkedList<T> {
             if(start.getValue().equals(value)) {
                 Node<T> next = start.getNext();
                 Node<T> prev = start.getPrev();
-                if(next != null)
+                if(next == null) {
+                    last = prev;
+                } else {
                     next.setPrev(prev);
-                if(prev != null)
+                    start.setNext(null);
+                }
+                if(prev == null) {
+                    first = next;
+                } else {
                     prev.setNext(next);
+                    start.setPrev(null);
+                }
                 start.removeLinks();
             }
         }
